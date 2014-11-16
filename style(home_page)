@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+	a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color:#00F;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFF99
+}
+a:active {
+	text-decoration: none;
+	color: #F30;
+}
+.content {
+			background-color: #FFF;
+			height: 1000px;
+			width: 1140px;
+			margin-top: 10px;
+			margin-right: 88px;
+			margin-bottom: 46px;
+			margin-left: 97px;
+		}
+		a {
+			font-size: 24px;
+		}
+		.content1 {
+	width: 400px;
+	float: left;
+	margin-left: 495px;
+		}
+		.content2 {
+	width: 350px;
+	font-size: 14px;
+	margin-left: 900px;
+	font-family: Verdana, Geneva, sans-serif;
+		}
+		a:visited {
+			color: #FF0;
+		}
+		a:active {
+			color: #F00;
+		}
+.font {
+	font-size: 24px;
+	text-align: center;
+	margin-top: 25px;
+	vertical-align: middle;
+	font-family: Verdana, Geneva, sans-serif;
+}
