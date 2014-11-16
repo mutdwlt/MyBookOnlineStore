@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang=''>
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="account-create.css">
+   <link rel="stylesheet" href="login.css">
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="script.js"></script>
+   <title>Tạo tài khoản mới</title>
+</head>
+<body>
+	<div><center><img src="banner.jpg" alt=" "></center> </div>
+
+	<div class="container">
+	<table  >
+		<tr>
+			<td>
+				<span id="search">
+					<form action=" ">
+				<div align="center">
+					<input type="text" name="Tìm" value=" " size="60">
+					<input type="submit" name="TÌM" value="TÌM">
+				</div>
+			</form>
+				</span>
+			</td>
+			<td ><a id ="top" href="login.html">Đăng nhập</a>
+			</td>
+			<td >
+			<span style="letter-spacing:14px;"> |</span>
+			</td>
+			<td ><a id ="top" href='#'>Giỏ hàng</a>
+			</td>
+	
+	</tr>
+	</table>
+	<div id="head-login">
+		<span>Tạo tài khoản mới</span>
+	</div>
+	<fieldset id="field-box">
+	<ul>
+		<li>
+	<h4 class="orange">Thông tin cá nhân</h4>
+	</li>
+	<li>
+			<div class="text-box"> 
+				<label for="firstname">Họ </label> </br>
+				<input type="text" id="ho" name="ho" value="" title="Họ" class="form-text" maxlength="30">
+			</div>
+		</li>
+	</ul>
+	</fieldset>
+	<fieldset id="field-box">
+	<ul>
+	<li>
+	<h4 class="orange">Thông tin đăng nhập</h4>
+	</li>
+		<li>
+			<div class="text-box"> 
+				<label for="email_address">Địa chỉ email</label> </br>
+				<input type="text" name="email" id="email_address" value="" title="Địa chỉ email" class="form-text">
+			</div>
+		</li>
+		<li>
+				<div class="text-box">
+                    <label for="password">Mật khẩu</label><br>
+                    <input type="password" name="password" id="password" title="Mật khẩu" class="form-text">
+                </div>
+                <div class="text-box">
+                    <label for="confirmation">Xác nhận mật khẩu</label><br>
+                    <input type="password" name="confirmation" title="Xác nhận mật khẩu" id="confirmation" class="form-text">
+                </div>
+        </li>
+	</ul>
+	</fieldset>
+	<button type="button" class="signin-button" onclick="window.location='account-create.html';">
+	Đăng ký tài khoản mới</button>
+	
+</div>
+	
+	
+</body>
+<html>
