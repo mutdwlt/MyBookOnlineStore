@@ -1,0 +1,58 @@
+.col{
+text-align: left;
+width: 59%;
+}
+.item-name{
+	font-size: 18px;
+font-weight: normal;
+color: #333;
+display: inline;
+line-height: 25px;
+}
+h1{
+-webkit-margin-before: 0.67em;
+-webkit-margin-after: 0.67em;
+}
+
+.price{ 
+padding-left: 5px;
+font-size: 14px;
+text-decoration: line-through !important;
+}
+.sale{
+color: #090 !important;
+font-size: 18px !important;
+font-weight: bold!important;
+}
+.item-table{
+margin: 10px 0;
+}
+.item-table:before, .item-table:after{
+display: table;
+content: " ";
+}
+.item-table-left{
+width: 39.666667%;
+border-right: 1px solid #eee;
+float: left;
+}
+.author-box{
+margin-bottom: 8px;
+}
+.author-box:after{
+content: "." !important;
+display: block;
+clear: both;
+font-size: 0;
+line-height: 0;
+height: 0;
+overflow: hidden;
+}
+.author-list{
+float: left;
+margin-top: -3px;
+}
+.item-table-right{
+margin: 15px 25px;
+float: left;
+}
