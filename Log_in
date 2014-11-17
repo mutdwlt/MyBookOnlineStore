@@ -18,7 +18,7 @@ a:hover {
 </head>
 <body bgcolor="#00CCFF">
 <center><img src="images/File-1414989219.png" width="1140" height="65"><br/>
-  <a href="C:\Users\BaoHuy\Desktop\Project\Home_page.html"><strong>muasachonline.vn</strong></a>
+  <a href="Home_page.html"><strong>muasachonline.vn</strong></a>
 </center>
     <form action="" method="post" name="form3" class="content1">
       <label for="textfield"></label>
@@ -26,9 +26,9 @@ a:hover {
       <input type="submit" name="Submit" id="button" value="Tìm kiếm">	
     </form>
     <form action="" method="post" name="form2" class="content2">
-      <div align="right"><a href="C:\Users\BaoHuy\Desktop\Project\Log_in.html">
+      <div align="right"><a href="Log_in.html">
       	<input type="image" name="imageField" id="imageField" src="images/avatar-s.png">
-        	<td><a id="top" href="C:\Users\BaoHuy\Desktop\Project\Log_in.html">Đăng nhập|Đăng ký</a></td>
+        	<td><a id="top" href="Log_in.html">Đăng nhập|Đăng ký</a></td>
       </div>
     </form>
     <hr/>
