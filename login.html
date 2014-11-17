@@ -4,8 +4,8 @@
 <meta charset='utf-8'>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="login.css">
-<link rel="stylesheet" href="all.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/all.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	type="text/javascript"></script>
 <script src="script.js"></script>
@@ -18,25 +18,21 @@
 			<img src="banner.jpg" alt=" ">
 		</center>
 	</div>
-	<table>
-		<tr>
-			<td><span id="search">
+	<div class="clearfix">
+		<div class="search">
 					<form action=" ">
-						<div align="center">
-							<input type="text" name="Tìm" value=" " size="60"> 
-							<input type="submit" name="TÌM" value="TÌM">
-						</div>
+							<input class="search-box"type="text" name="Tìm" value=" " size="60"> 
+							<input type="submit" name="TÌM" value="Tìm kiếm">
 					</form>
-			</span>
-			</td>
-			<td><a id="top" href='#'>Đăng nhập</a></td>
-			<td><span style="letter-spacing: 14px;"> |</span></td>
-			<td><a id="top" href='#'>Giỏ hàng</a></td>
+				</div>
+		<div class="login-button">		
+			<a class="top" href='#'><b>Đăng nhập</a>
+			<span style="letter-spacing: 14px;"> |</span>
+			<a class="top" href='#'>Giỏ hàng</a>
+		</div>
+	</div>
 
-		</tr>
-	</table>
-
-	<div id="header">
+	<div class="header">
 		<h2>Đăng Nhập hoặc Tạo Tài Khoản Mới</h2>
 	</div>
 
