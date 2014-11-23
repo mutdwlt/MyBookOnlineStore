@@ -47,6 +47,11 @@ float: left;
 width: 226px;
 margin-bottom: 20px;
 }
+.wide-text-box{
+float: left;
+width: 50%;
+margin-bottom: 20px;
+}
 .form-text{
 height: 32px;
 padding: 6px 10px;
