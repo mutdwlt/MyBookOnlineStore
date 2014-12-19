@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="css/top_header.css">
 <link rel="stylesheet" href="css/cus-account.css">
 
-<script src="http://code.jquery.com/jquery-latest.min.js"
-	type="text/javascript"></script>
 <script src="script.js"></script>
 <title>Tài khoản khách hàng</title>
 </head>
@@ -53,9 +51,10 @@
 				<ul>
 					<li class="on">Thông tin chung tài khoản</li>
 					<li><a href="account-edit.php">Sửa thông tin tài khoản</a></li>
-					<li><a href="https://tiki.vn/customer/address/">Sổ địa chỉ (Address book)</a></li>
+					<li><a href="#">Sổ địa chỉ (Address book)</a></li>
 					<li><a href="order-history.php">Đơn hàng của tôi</a></li>
-					<li><a href="https://tiki.vn/productquestion/customer/index/">Hỏi đáp</a></li>
+					<li><a href="cus-cart.php">Giỏ hàng</a></li>
+					<li><a href="#">Hỏi đáp</a></li>
 				</ul>
 			</div>
 			<div class="col-main">
@@ -102,53 +101,53 @@
 					</table>
 				
 				</div>
-			<div class="account-box ad-account-info">
-	    <div class="head">
-	        <h4>Thông tin tài khoản</h4>
-	    </div>
-	    <div class="col2-set">
-    <div class="col-1">
-        <div class="inner-head">
-            <h5>Thông tin liên hệ</h5>
-            <a href="#">Chỉnh sửa</a>
-        </div>
-        <p>
-            đặng linh<br>
-            mlinh_211@zing.vn<br>
-            <a href="#">Thay đổi mật khẩu</a>
-        </p>
-    </div>
-        <div class="col-2">
-        <div class="inner-head">
-            <h5>Newsletters</h5>
-            <a href="#">Chỉnh sửa</a>
-        </div>
-        <p>
-                            Hiện tại bạn không đăng ký nhận bất kỳ tin (newsletter) nào.                    </p>
-    </div>
-    </div>
-<br>
-	    <div class="inner-head">
-    <h5>Sổ địa chỉ (Address book)</h5>
-    <a href="#">Quản lý địa chỉ</a>
-</div>
-<div class="col2-set">
-    <div class="col-1">
-        <h6>&nbsp;Địa chỉ thanh toán chính</h6>
-        <address>
-            đặng linh<br>  Nhà số 893 phường Mường Thanh<br>    Thành Phố Điện Biên Phủ,  Điện Biên, +84<br> Việt Nam<br> T: 0972601165 <br>F: 02303824926<br>
-            <a href="#">Chỉnh sửa địa chỉ</a>
-        </address>
-    </div>
-    <div class="col-2">
-        <h6>&nbsp;Địa chỉ thanh toán chính</h6>
-        <address>
-            đặng linh<br>  Nhà số 893- tổ 23 - đường 7/5  phường Mường Thanh<br>    Thành Phố Điện Biên Phủ,  Điện Biên, +84<br> Việt Nam<br> T: 0972601165 <br>F: 02303824926<br>
-            <a href="https://tiki.vn/customer/address/edit/id/79920/">Chỉnh sửa địa chỉ</a>
-        </address>
-    </div>
-</div><br>
-	</div>
+				<div class="account-box ad-account-info">
+					<div class="head">
+						<h4>Thông tin tài khoản</h4>
+					</div>
+					<div class="col2-set">
+				<div class="col-1">
+					<div class="inner-head">
+						<h5>Thông tin liên hệ</h5>
+						<a href="#">Chỉnh sửa</a>
+					</div>
+					<p>
+						đặng linh<br>
+						mlinh_211@zing.vn<br>
+						<a href="#">Thay đổi mật khẩu</a>
+					</p>
+				</div>
+					<div class="col-2">
+					<div class="inner-head">
+						<h5>Newsletters</h5>
+						<a href="#">Chỉnh sửa</a>
+					</div>
+					<p>
+										Hiện tại bạn không đăng ký nhận bất kỳ tin (newsletter) nào.                    </p>
+				</div>
+				</div>
+			<br>
+					<div class="inner-head">
+				<h5>Sổ địa chỉ (Address book)</h5>
+				<a href="#">Quản lý địa chỉ</a>
+			</div>
+			<div class="col2-set">
+				<div class="col-1">
+					<h6>&nbsp;Địa chỉ thanh toán chính</h6>
+					<address>
+						đặng linh<br>  Nhà số 893 phường Mường Thanh<br>    Thành Phố Điện Biên Phủ,  Điện Biên, +84<br> Việt Nam<br> T: 0972601165 <br>F: 02303824926<br>
+						<a href="#">Chỉnh sửa địa chỉ</a>
+					</address>
+				</div>
+				<div class="col-2">
+					<h6>&nbsp;Địa chỉ thanh toán chính</h6>
+					<address>
+						đặng linh<br>  Nhà số 893- tổ 23 - đường 7/5  phường Mường Thanh<br>    Thành Phố Điện Biên Phủ,  Điện Biên, +84<br> Việt Nam<br> T: 0972601165 <br>F: 02303824926<br>
+						<a href="https://tiki.vn/customer/address/edit/id/79920/">Chỉnh sửa địa chỉ</a>
+					</address>
+				</div>
+			</div><br>
+				</div>
 			</div>
 		</div>
 	</div>

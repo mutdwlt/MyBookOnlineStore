@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="css/top_header.css">
 <link rel="stylesheet" href="css/cus-account.css">
 
-<script src="http://code.jquery.com/jquery-latest.min.js"
-	type="text/javascript"></script>
 <script src="script.js"></script>
 <title>Lịch sử đặt hàng</title>
 </head>
