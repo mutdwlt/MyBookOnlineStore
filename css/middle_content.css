@@ -1,0 +1,174 @@
+/* CSS Document */
+.middle_content{
+	width:870px;
+	margin:10px;
+	float:left;
+}
+.middle_content .title{
+	width:auto;
+	padding:10px 0 5px 0;
+	border-bottom: 1px solid #e7e7e7;
+}
+.middle_content .list_book{
+	width:auto;
+	height: 310px;
+	padding: 25px 0px 15px 27px;
+}
+.middle_content .title a{
+	font-size:19px;
+	font-weight:bold;
+}
+.middle_content .title span a{
+	font-size: 12px;
+	font-weight:normal;
+	float:right;
+}
+.middle_content .list_book .book{
+	width:140px;
+	margin: 5px 0 14px 0px;
+	padding: 0px 11px 0 11px;
+	line-height:21px;
+	float:left;
+}
+.middle_content .list_book .book .book_icon{
+	margin: 0 0 4px 0;
+}
+.middle_content .list_book .book .book_title{
+	padding-left:7px;
+}
+.middle_content .list_book .book .book_note{
+	padding-left:7px;
+	font-size:11px;
+	color:#777;
+}
+.middle_content .list_book .book .book_cost{
+	font-weight:bold;
+	padding-left:7px;
+}
+.middle_content .list_book a .more2{
+	width: 10px;
+	height: 20px;
+	float: left;
+	margin: 105px 0px 0 0;
+	padding: 0px 7px 13px 10px;
+	color: #bbb;
+	font-size: 26px;
+	font-weight: bold;
+	background: #f7f7f7;
+	border-radius: 3px;
+}
+.middle_content .list_book .more2:hover{
+	background:#DADADA;
+	color:#868686;
+}
+.middle_content .list_book .author_pic{
+	margin: 15px 40px 0px 0px;
+	padding: 5px;
+	float:left;
+	border: 1px solid #ddd;
+}
+.middle_content .list_book .info{
+	font-size: 12px;
+	line-height: 18px;
+	margin: 15px 0;
+	color:#333;
+}
+.middle_content .title1{
+	color:#05b2e9;
+	font-size:19px;
+	font-weight:bold;
+	padding:10px 0 5px 0;
+	border-bottom: 1px solid #e7e7e7;
+}
+.middle_content .title1_info{
+	width:auto;
+	font-size:12px;
+	padding: 25px 0px 15px 0px;
+	color:#919191;
+	text-align:justify;
+}
+.list_categories{
+	width:auto;
+	height: 575px;
+	padding: 0px 0px 15px 33px;
+}
+.categories{
+	width: 160px;
+	float:left;
+	margin: 10px 0 0 0;
+	padding: 10px 20px 0px 20px;
+}
+.categories .cate_icon{
+	padding:7px;
+	border:1px solid #e7e7e7;
+}
+.categories .category{
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	line-height:20px;
+	margin: 7px 0 0 0;
+}
+.categories .category a{
+	color:#333;
+}
+.categories .category a:hover{
+	color:#05b2e9;
+	text-decoration:underline;
+}
+<-----list book 1 danh cho cac trang the loai sach rieng---->
+.middle_content .list_book1{
+	width:auto;
+	height: 700px;
+	padding: 25px 0px 15px 27px;
+}
+.middle_content .list_book1 .book{
+	width:140px;
+	margin: 5px 0 14px 0px;
+	padding: 10px 11px 0 11px;
+	line-height:21px;
+	float:left;
+}
+.middle_content .list_book1 .book .book_icon{
+	margin: 0 0 4px 0;
+}
+.middle_content .list_book1 .book .book_title{
+	padding-left:7px;
+}
+.middle_content .list_book1 .book .book_note{
+	padding-left:7px;
+	font-size:11px;
+	color:#777;
+}
+.middle_content .list_book1 .book .book_cost{
+	font-weight:bold;
+	padding-left:7px;
+}
+.middle_content .list_book1 a .more2{
+	width: 10px;
+	height: 20px;
+	float: left;
+	margin: 105px 0px 0 0;
+	padding: 0px 7px 13px 10px;
+	color: #bbb;
+	font-size: 26px;
+	font-weight: bold;
+	background: #f7f7f7;
+	border-radius: 3px;
+}
+.middle_content .list_book1 .more2:hover{
+	background:#DADADA;
+	color:#868686;
+}
+.middle_content .list_book1 .author_pic{
+	margin: 15px 40px 0px 0px;
+	padding: 5px;
+	float:left;
+	border: 1px solid #ddd;
+}
+.middle_content .list_book1 .info{
+	font-size: 12px;
+	line-height: 18px;
+	margin: 15px 0;
+	color:#333;
+}
