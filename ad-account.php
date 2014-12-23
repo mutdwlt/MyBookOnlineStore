@@ -1,39 +1,90 @@
-<!doctype html>
-<html lang=''>
-<head>
-<meta charset='utf-8'>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/ad-account.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/top_header.css">
-<link rel="stylesheet" href="css/cus-account.css">
-<link rel="stylesheet" href="css/store.css">
-
-<script src="script.js"></script>
-<title>Bảng điều khiển</title>
+<?php
+	session_start();
+	if(!$_SESSION['name']||($_SESSION['role']!=1)) header('location:login.php');
+	$username=$_SESSION['name'];
+	$conn=mysqli_connect("localhost","root","","bookstore");
+	mysqli_set_charset($conn,"utf8");
+	if (mysqli_connect_errno())
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+	$sql="select * from customers where username='".$username."'";
+	$query=mysqli_query($conn,$sql);
+	if(mysqli_num_rows($query) == 0)
+		{
+			 header('location:login.php');
+		}
+	$data=mysqli_fetch_assoc($query);
+	$name=$data['cus_name'];
+	$sex=$data['sex'];
+	$phone=$data['phone'];
+	$email=$data['email'];
+	$address=$data['address'];
+	$birth=$data['birth'];
+	$password=$data['password'];
+	$role=$data['role'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Thêm sách mới</title>
+		<link rel="stylesheet" href="css/ad_account.css">
+		<link rel="stylesheet" href="css/footer.css">
+		<link rel="stylesheet" href="css/top_header.css">
+		<link rel="stylesheet" href="css/cus_account.css">
+		<link rel="stylesheet" href="css/store.css">
+		<style type="text/css">
+			a:link{
+				text-decoration:none;
+				color:#05b2e9;
+			}
+			a:visited {
+				color: #05b2e9;
+			}
+			a:hover {
+				color: #3C3;
+			}
+			a:active {			
+				color: #F00;
+			}
+		</style>
 </head>
 <body>
-	<div class="top">
-    	<center><a href="index.html"><img src="images/File-1414989219.png" alt="" width="1140" height="65"></a></center>
+    <div class="top">
+    	<center><a href="index.php"><img src="images/File-1414989219.png" alt="" width="1140" height="65" /></a></center>
 	</div>
+    <!--------- START HEADER----------------->
 	<div class="header">
-        <div id="homepage_icon"><a href="index.html"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
+        <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
             <form>
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
             	<input name="button" type="button" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.html"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
-           	<div class="login_icon"><img src="images/login_icon.png" width="45" height="41" align="middle" /></div>
-            <div class="login_text"><a href="sign_in.html">Đăng nhập</a> | <a href="registered.html">Đăng ký</a></div>
+           	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
+			<?php
+				if(isset($_SESSION['name']))
+				{
+				?>
+				<div class="login_text"><a href="cus_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
+				<?php
+				}
+				else
+				{
+				?>
+				<div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+				<?php
+				}
+			?>  
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
     <br />
-	<hr>
+	<hr />
 <div class="container">
 	
 	<div class="clearfix">
@@ -42,20 +93,19 @@
 				<div class="avatar clearfix">
 					<h3>Điều hành trang web</h3>
 					<div class="all-left">
-						<a href="#" title="User-name">
-						<img src="images/login_icon.png" alt="User-name" width="45" height="45">
+						<a href="ad_acount.php" title="User-name">
+						<img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" alt="User-name" width="45" height="45">
 						</a>
-						<a href="#" title="đặng linh">
-							<span class="u-name">đặng linh	</span>		</a>
+						<a href="ad_account.php" title="đặng linh">
+							<span class="u-name"><?php echo $name;?></span>		</a>
 					</div>
 				</div>
 				<ul>
-					<li class="on"><a href="ad-account.php">Thông tin chung tài khoản</a></li>
-					<li><a href="upload-new-book.php">Thêm sách mới</a></li>
-					<li><a href="store.php">Kho hàng</a></li>
-					<li><a href="sales-off.php">Quản lý khuyến mại</a></li>
+					<li class="on"><a href="ad_account.php">Thông tin chung về trang web</a></li>
+					<li><a href="upload_book.php">Thêm sách mới</a></li>
+					<li><a href="store.php">Quản lý Kho hàng</a></li>
 					<li><a href="customers.php">Quản lý khách hàng</a></li>
-					<li><a href="ad-order-history.php">Quản lý đơn hàng</a></li>
+					<li><a href="order_history.php">Quản lý đơn hàng</a></li>
 					
 					<li><a href="#">Hướng dẫn</a></li>
 				</ul>
@@ -65,7 +115,7 @@
 				<h1>Bảng điều khiển</h1>
 				</div>
 				<div class="main-2">
-				<p><strong>Xin chào, user!</strong><br>
+				<p><strong>Xin chào, admin!</strong><br>
 				Sử dụng bảng điều khiển này để quản lý trang web</p>
 				</div>
 				<div class="main-3">
@@ -75,19 +125,37 @@
 								<h4>Thông tin trang web </h4>
 							</li>
 							<li class="info">
-								<div class="info-date">Bây giờ là <i>19 giờ 30 phút giờ GMT, ngày 25 tháng 12 năm 2017</i>.</div>
+							<?php $today=date("Y-m-d");?>
+								<div class="info-date">Hôm nay là ngày <i> <?php echo $today;?></i>.</div>
 							</li >
+							<?php
+								$sql="SELECT book_ID FROM books";
+								$query=mysqli_query($conn,$sql);
+								$row=mysqli_num_rows($query);
+								$sql="SELECT book_ID FROM books WHERE sale_off!=0";
+								$query=mysqli_query($conn,$sql);
+								$sale_off=mysqli_num_rows($query);
+								$sql="SELECT order_ID FROM orders WHERE status=1";
+								$query=mysqli_query($conn,$sql);
+								$xuly=mysqli_num_rows($query);
+								$sql="SELECT order_ID FROM orders WHERE status=0";
+								$query=mysqli_query($conn,$sql);
+								$chuaxuly=mysqli_num_rows($query);
+								$sql="SELECT cus_ID FROM customers WHERE role=0";
+								$query=mysqli_query($conn,$sql);
+								$member=mysqli_num_rows($query);
+							?>
 							<li class="info">
 								<ul class="info-record">
 									<li>
-										<p>Hiện giờ trang web có <span class="info-number">100</span> <a href="store.php">đầu sách</a> trong đó có <em>25</em> đầu sách đang được giảm giá</p>
+										<p>Hiện giờ trang web có <span class="info-number"><?php echo $row;?></span> <a href="store.php"> đầu sách</a> trong đó có <em><?php echo $sale_off;?></em> đầu sách đang được giảm giá</p>
 								
 									</li>
 									<li>
-										<p>Tính đến bây giờ trang web đã xử lý <span class="info-number">40</span> <a href="ad-order-history.php">đơn hàng</a> và <em>7</em> đơn hàng chưa xử lý</p>
+										<p>Tính đến bây giờ trang web đã xử lý <span class="info-number"><?php echo $xuly;?></span> <a href="ad-order-history.php">đơn hàng</a> và <em><?php echo $chuaxuly;?></em> đơn hàng chưa xử lý</p>
 									</li>
 									<li>
-										<p>Có <span class="info-number">100</span> <a href="customers.php">khách hàng</a> đã đăng ký vào trang web, trong ngày hôm nay có <em>4</em> tài khoản mới đăng ký.</p>
+										<p>Có <span class="info-number"><?php echo $member;?></span> <a href="customers.php">khách hàng</a> đã đăng ký vào trang web
 									</li>
 								</ul>
 							</li>
@@ -96,7 +164,6 @@
 					
 				</div>
 				<div class="button-set">
-					<a href="" class="left">« Trở lại</a>
 				</div>
 				
 			</div>
