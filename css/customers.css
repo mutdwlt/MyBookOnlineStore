@@ -1,0 +1,71 @@
+
+.search h4{
+color: #E65505;
+font-size: 1.1em;
+text-transform: uppercase;
+
+}
+.search-customer{
+margin-left: 10px;}
+.head {
+margin-bottom: 10px;
+border-bottom: 1px solid #d9dde3;
+line-height: 20px;
+padding-bottom: 4px;
+}
+.search-customer .c-id {
+width: 240px;
+float: left;
+}
+label.label-dob {
+font-weight: normal;
+color: #888;
+font-size: 10px;
+}
+.search-customer .c-name {
+width: 320px;
+float: left;
+margin-left: 20px;
+}
+.search-customer .date {
+width: 260px;
+float: left;
+
+}
+.search-customer  input,.search-customer  button{
+margin: 5px 10px;
+}
+.search  button{
+width: auto;
+height: 25px;
+border-color: #05b2e9 !important;
+color: #fff;
+text-transform: uppercase;
+text-align: center;
+background: #05b2e9;
+padding: 6px 20px;
+font-weight: bold;
+border: 1px solid transparent;
+border-radius: 2px;
+}
+.search-customer .b-search--button{
+float: right;
+margin-right: 5px;
+}
+/* */
+.or-stt {
+float: left;
+width: 150px;
+padding: 12px 0px;
+line-height: 1.428571429;
+font-size: 1.1em;
+vertical-align: middle;
+}
+.or-status {
+float: left;
+width: 250px;
+padding: 11px 0px;
+line-height: 1.428571429;
+font-size: 1.1em;
+vertical-align: middle;
+}
