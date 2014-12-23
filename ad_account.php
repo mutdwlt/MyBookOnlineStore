@@ -28,7 +28,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Thêm sách mới</title>
+        <title>Điều hành trang web</title>
 		<link rel="stylesheet" href="css/ad_account.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/top_header.css">
@@ -70,7 +70,7 @@
 				if(isset($_SESSION['name']))
 				{
 				?>
-				<div class="login_text"><a href="cus_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
+				<div class="login_text"><a href="ad_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
 				<?php
 				}
 				else
@@ -85,6 +85,7 @@
     </div>
     <br />
 	<hr />
+	    <!--------- END HEADER ------------------>	
 <div class="container">
 	
 	<div class="clearfix">
@@ -93,7 +94,7 @@
 				<div class="avatar clearfix">
 					<h3>Điều hành trang web</h3>
 					<div class="all-left">
-						<a href="ad_acount.php" title="User-name">
+						<a href="ad_account.php" title="User-name">
 						<img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" alt="User-name" width="45" height="45">
 						</a>
 						<a href="ad_account.php" title="đặng linh">
@@ -105,7 +106,7 @@
 					<li><a href="upload_book.php">Thêm sách mới</a></li>
 					<li><a href="store.php">Quản lý Kho hàng</a></li>
 					<li><a href="customers.php">Quản lý khách hàng</a></li>
-					<li><a href="order_history.php">Quản lý đơn hàng</a></li>
+					<li><a href="ad_order_history.php">Quản lý đơn hàng</a></li>
 					
 					<li><a href="#">Hướng dẫn</a></li>
 				</ul>
@@ -152,7 +153,7 @@
 								
 									</li>
 									<li>
-										<p>Tính đến bây giờ trang web đã xử lý <span class="info-number"><?php echo $xuly;?></span> <a href="ad-order-history.php">đơn hàng</a> và <em><?php echo $chuaxuly;?></em> đơn hàng chưa xử lý</p>
+										<p>Tính đến bây giờ trang web đã xử lý <span class="info-number"><?php echo $xuly;?></span> <a href="ad_order_history.php">đơn hàng</a> và <em><?php echo $chuaxuly;?></em> đơn hàng chưa xử lý</p>
 									</li>
 									<li>
 										<p>Có <span class="info-number"><?php echo $member;?></span> <a href="customers.php">khách hàng</a> đã đăng ký vào trang web
