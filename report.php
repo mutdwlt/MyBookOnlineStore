@@ -1,86 +1,140 @@
-<!doctype html>
-<html lang=''>
-<head>
-<meta charset='utf-8'>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/report.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/top_header.css">
-<link rel="stylesheet" href="css/cus-account.css">
-
-<script src="script.js"></script>
-<title>Báo lỗi</title>
+<?php
+	session_start();
+	if(!$_SESSION['name']) header('location:login.php');
+	$username=$_SESSION['name'];
+	$conn=mysqli_connect("localhost","root","","bookstore");
+	mysqli_set_charset($conn,"utf8");
+	if (mysqli_connect_errno())
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+	$sql="select * from customers where username='".$username."'";
+	$query=mysqli_query($conn,$sql);
+	if(mysqli_num_rows($query) == 0)
+		{
+			 header('location:login.php');
+		}
+	$data=mysqli_fetch_assoc($query);
+	$name=$data['cus_name'];
+	$ID=$data['cus_ID'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Trang cá nhân</title>
+        <link rel="stylesheet" type="text/css" href="css/top_header.css"/>
+        <link rel="stylesheet" type="text/css" href="css/cus_account.css"/>
+        <link rel="stylesheet" type="text/css" href="css/footer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/report.css"/>
+		<style type="text/css">
+			a:link{
+				text-decoration:none;
+				color:#05b2e9;
+			}
+			a:visited {
+				color: #05b2e9;
+			}
+			a:hover {
+				color: #3C3;
+			}
+			a:active {			
+				color: #F00;
+			}
+		</style>
 </head>
 <body>
-	<div class="top">
-    	<center><a href="index.html"><img src="images/File-1414989219.png" alt="" width="1140" height="65"></a></center>
+    <div class="top">
+    	<center><a href="index.php"><img src="images/File-1414989219.png" alt="" width="1140" height="65" /></a></center>
 	</div>
+    <!--------- START HEADER----------------->
 	<div class="header">
-        <div id="homepage_icon"><a href="index.html"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
+        <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
             <form>
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
             	<input name="button" type="button" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.html"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
-           	<div class="login_icon"><img src="images/login_icon.png" width="45" height="41" align="middle" /></div>
-            <div class="login_text"><a href="sign_in.html">Đăng nhập</a> | <a href="registered.html">Đăng ký</a></div>
+           	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
+			<?php
+				if(isset($_SESSION['name']))
+				{
+				?>
+				<div class="login_text"><a href="cus_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
+				<?php
+				}
+				else
+				{
+				?>
+				<div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+				<?php
+				}
+			?>  
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
     <br />
-	<hr>
+	<hr />
+    <!--------- END HEADER ------------------>	
 <div class="container">
 	
 	<div class="clearfix">
 		<div class="layout">
 			<div class="col-left">
 				<div class="avatar clearfix">
-					<h3>Điều hành trang web</h3>
+					<h3>Tài khoản của tôi</h3>
 					<div class="all-left">
-						<a href="#" title="User-name">
+						<a href="cus_account.php" title="User-name">
 						<img src="images/login_icon.png" alt="User-name" width="45" height="45">
 						</a>
-						<a href="#" title="đặng linh">
-							<span class="u-name">đặng linh	</span>		</a>
+						<a href="cus_account.php">
+							<span class="u-name"><?php echo $name;?></span></a>
 					</div>
 				</div>
 				<ul>
-					<li><a href="ad-account.php">Thông tin chung tài khoản</a></li>
-					<li><a href="upload-new-book.php">Thêm sách mới</a></li>
-					<li><a href="store.php">Kho hàng</a></li>
-					<li><a href="sales-off.php">Quản lý khuyến mại</a></li>
-					<li><a href="customers.php">Quản lý khách hàng</a></li>
-					<li><a href="ad-order-history.php">Quản lý đơn hàng</a></li>
-					
-					<li  class="on">Báo lỗi<span style="color: red;font-size: 1.1em;"> <b>!</b></span></li>
+					<li><a href="cus_account.php">Thông tin chung tài khoản</a></li>
+					<li><a href="account_edit.php">Sửa thông tin tài khoản</a></li>
+					<li><a href="cus_cart.php">Giỏ hàng</a></li>
+					<li><a href="order_history.php">Đơn hàng của tôi</a></li>
+					<li class="on"><a href="report.php">Hỏi đáp</a></li>
 				</ul>
 			</div>
 			<div class="col-main">
 				<div class="main-1">
-				<h1>Báo lỗi</h1>
+				<h1>Hỏi đáp</h1>
 				</div>
 				<div class="main-2">
-				<p><strong>Xin chào, user!</strong><br>
-				Nếu phát hiện lỗi trong trang web hãy báo ngay cho chúng tôi.</p>
+				<p><strong>Xin chào, <?php echo $name;?>!</strong><br>
+				Nếu bạn có bất cứ thắc mắc gì, hoặc phát hiện bất kì lỗi nào, hãy báo ngay cho chúng tôi!</p>
 				</div>
+				<?php
+					if(isset($_POST['submit']))
+					{
+						if($_POST['noidung'])
+						{
+							$noidung=$_POST['noidung'];
+							$query=mysqli_query($conn,"INSERT INTO report VALUE('','$ID','$noidung')");
+							echo "<font color='red'>Đã gửi câu hỏi thành công</font>";
+						}
+						else "<font color='red'>Bạn phải nhập nội dung</font>";
+					}
+				?>
 				<div class="report-problem">
-					<form id=""  method="get">
+					<form action="report.php" method="post">
 					<div class="clearfix">
 						<label for="report">
 								
 						</label> </br>
-						<textarea  id="report" name="report" title="Report Problem" maxlength="200"></textarea>
+						<textarea  id="report" name="noidung" title="Report Problem" maxlength="200"></textarea>
 					</div>
-						<button type="button" class="signin-button" onclick="window.location='#';">
-							Báo lỗi</button>
+						<button type="submit" name="submit" class="signin-button">
+							Gửi</button>
 					</form>
 				</div>
 				<div class="button-set">
-					<a href="index.php" class="left">« Trở lại trang chủ</a>
 				</div>
 				
 			</div>
