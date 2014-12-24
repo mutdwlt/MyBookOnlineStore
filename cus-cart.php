@@ -46,7 +46,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Trang cá nhân</title>
+        <title>Giỏ hàng của tôi</title>
         <link rel="stylesheet" type="text/css" href="css/top_header.css"/>
         <link rel="stylesheet" type="text/css" href="css/cus_account.css"/>
 		<link rel="stylesheet" type="text/css" href="css/cus_cart.css"/>
@@ -75,28 +75,39 @@
 	<div class="header">
         <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
-            <form>
+            <form action="search_result.php" method="post">
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
-            	<input name="button" type="button" class="button" value="TÌM" />
+            	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
-           	<div class="login_icon"><img src="images/login_icon.png" width="45" height="41" align="middle" /></div>
+           	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
 			<?php
 				if(isset($_SESSION['name']))
 				{
-				?>
-				<div class="login_text"><a href="cus_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
-				<?php
+					if($_SESSION['role']==1)
+					{
+					?>
+						<div class="login_text">Chào Admin</div>
+						<div class="login_text"><a href="ad_account.php">Trang quản lý</a> | <a href="logout.php">Đăng Xuất</a></div>
+					<?php					
+					}
+					else
+					{
+					?>
+						<div class="login_text"> Chào <?php echo $_SESSION['name'];?> - <a href="logout.php">Log out</a></div>
+						<div class="login_text"><a href="cus_account.php">Trang cá nhân</a> | <a href="cus_cart.php">Giỏ hàng</a></div>
+					<?php
+					}
 				}
 				else
 				{
 				?>
-				<div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+				<div class="login_text1"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
 				<?php
 				}
-			?>  
+			?>
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
@@ -120,10 +131,10 @@
 				</div>
 				<ul>
 					<li><a href="cus_account.php">Thông tin chung tài khoản</a></li>
-					<li><a href="account-edit.php">Sửa thông tin tài khoản</a></li>
+					<li><a href="account_edit.php">Sửa thông tin tài khoản</a></li>
 					<li class="on"><a href="cus_cart.php">Giỏ hàng</a></li>
-					<li><a href="order-history.php">Đơn hàng của tôi</a></li>
-					<li><a href="#">Hỏi đáp</a></li>
+					<li><a href="order_history.php">Đơn hàng của tôi</a></li>
+					<li><a href="report.php">Hỏi đáp</a></li>
 				</ul>
 			</div>
 			<div class="col-main">
@@ -212,7 +223,7 @@
 											</a>
 											<div class="b-cart__item-box">
 												<div class="b-cart__item-detail">
-												<a href="book_info.php?book_ID=<?php echo $row['book_ID'];?>"><?php echo $row['title'];?></a>
+												<a href="book_info.php?book_ID=<?php echo $row['book_ID'];?>"><?php echo $row['title'];$today=date("Y-m-d");if(strtotime($row['publish_date'])>strtotime($today)) echo"- <span style='color: #F0601C'>Đặt trước</span>";?></a>
 												</div>
 												<div class="b-cart__item-price">
 												<span class="b-cart__item-price-value">
@@ -227,7 +238,7 @@
 												</div>
 												<div class="b-cart__item-price_discount">
 													<span class="b-cart__item-price-value">
-													<span class="price"><?php $gia_ban=(int)($row['price']*(100-$row['sale_off'])/100); echo $$row['price']=$gia_ban;?>.000₫</span>
+													<span class="price"><?php $gia_ban=(int)($row['price']*(100-$row['sale_off'])/100); echo ($row['price']-$gia_ban)*$_SESSION['cart'][$row['book_ID']];?>.000₫</span>
 													</span>
 												</div>
 												<div class="b-cart__item-price-total">
