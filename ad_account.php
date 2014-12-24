@@ -58,28 +58,39 @@
 	<div class="header">
         <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
-            <form>
+            <form action="search_result.php" method="post">
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
-            	<input name="button" type="button" class="button" value="TÌM" />
+            	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
 			<?php
 				if(isset($_SESSION['name']))
 				{
-				?>
-				<div class="login_text"><a href="ad_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
-				<?php
+					if($_SESSION['role']==1)
+					{
+					?>
+						<div class="login_text">Chào Admin</div>
+						<div class="login_text"><a href="ad_account.php">Trang quản lý</a> | <a href="logout.php">Đăng Xuất</a></div>
+					<?php					
+					}
+					else
+					{
+					?>
+						<div class="login_text"> Chào <?php echo $_SESSION['name'];?> - <a href="logout.php">Log out</a></div>
+						<div class="login_text"><a href="cus_account.php">Trang cá nhân</a> | <a href="cus_cart.php">Giỏ hàng</a></div>
+					<?php
+					}
 				}
 				else
 				{
 				?>
-				<div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+				<div class="login_text1"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
 				<?php
 				}
-			?>  
+			?> 
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
@@ -145,6 +156,9 @@
 								$sql="SELECT cus_ID FROM customers WHERE role=0";
 								$query=mysqli_query($conn,$sql);
 								$member=mysqli_num_rows($query);
+								$sql="SELECT cus_ID FROM customers WHERE role=0 AND active=0";
+								$query=mysqli_query($conn,$sql);
+								$active=mysqli_num_rows($query);
 							?>
 							<li class="info">
 								<ul class="info-record">
@@ -156,7 +170,7 @@
 										<p>Tính đến bây giờ trang web đã xử lý <span class="info-number"><?php echo $xuly;?></span> <a href="ad_order_history.php">đơn hàng</a> và <em><?php echo $chuaxuly;?></em> đơn hàng chưa xử lý</p>
 									</li>
 									<li>
-										<p>Có <span class="info-number"><?php echo $member;?></span> <a href="customers.php">khách hàng</a> đã đăng ký vào trang web
+										<p>Có <span class="info-number"><?php echo $member;?></span> <a href="customers.php">khách hàng</a> đã đăng kí, trong đó có <?php echo $active;?> tài khoản bị khóa
 									</li>
 								</ul>
 							</li>
