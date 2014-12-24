@@ -1,64 +1,17 @@
 <?php
 	session_start();
-	if(isset($_POST['submit']))
-		{
-			if($_POST['search'])
-			{
-			$search=$_POST['search'];
-			$str=" title LIKE '%$search%'";
-			}
-			else $str=" 0";
-		}
-	elseif(isset($_POST['timnangcao']))
-		{
-			if($_POST['title'])
-			{
-				$title=$_POST['title'];
-				$strtitle=" title LIKE '%$title%'";
-			}
-			else $strtitle="1";
-			if($_POST['author'])
-			{
-				$author=$_POST['author'];
-				$strauthor="author LIKE '%$author%'";
-			}
-			else $strauthor="1";
-			if($_POST['company'])
-			{
-				$company=$_POST['company'];
-				$strcompany="company LIKE '%$company%'";
-			}
-			else $strcompany="1";
-			if($_POST['publishing_house'])
-			{
-				$publishing_house=$_POST['publishing_house'];
-				$strpublishing_house="publishing_house LIKE '%$publishing_house%'";
-			}
-			else $strpublishing_house="1";
-			if(isset($_POST['category']))
-			{
-			$strcate="";
-			foreach($_POST['category'] as $theloai)
-				{
-				$strcate=$strcate." OR book_cate.cate_ID ='$theloai'";
-				}
-			$str=" books.book_ID=book_cate.book_ID $strcate AND $strtitle AND $strauthor AND $strcompany AND $strpublishing_house";
-			}
-			else
-			  $str=" $strtitle AND $strauthor AND $strcompany AND $strpublishing_house";			
-		}
-	else $str=" 0";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Kết quả tìm kiếm</title>
+        <title>Tìm kiếm nâng cao</title>
         <link rel="stylesheet" type="text/css" href="css/top_header.css"/>
         <link rel="stylesheet" type="text/css" href="css/content.css"/>
         <link rel="stylesheet" type="text/css" href="css/left_content.css"/>
         <link rel="stylesheet" type="text/css" href="css/middle_content.css"/>
         <link rel="stylesheet" type="text/css" href="css/footer.css"/>
+		<link rel="stylesheet" href="css/upload_book.css">
 		<style type="text/css">
 			a:link{
 				text-decoration:none;
@@ -87,7 +40,7 @@
             	<div class="search_div"><input type="text" name="search" placeholder="Tìm theo tên sách" class="search"/></div>
             	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if(isset($_SESSION['role'])){if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";}else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
@@ -147,83 +100,100 @@
                         <li style="border: none;"><a href="category.php?cate_ID=13">Sách Nuôi Dạy Con</a></li>
                     </ul>
                 </div>
-				<div class="title_box2">MUA THEO GIÁ</div>
-                <div class="left_menu2">
-                    <ul class="left_menu_content2">
-                        <li><a href="">0 ₫ - 100.000 ₫ </a></li>
-                        <li><a href="">100.000 ₫ - 200.000 ₫ </a></li>
-                        <li><a href="">200.000 ₫ - 300.000 ₫ </a></li>
-                        <li><a href="">300.000 ₫ - 400.000 ₫ </a></li>
-                        <li style="border: none;"><a href=""> 400.000₫ < </a></li>
-                    </ul>
-                </div>
             </div>
             <!------- END left_content ------->
             
             <!------- START Middle_content ------->
-          <div class="middle_content">
-			<div class="title" id="no_border">
-                	<p class="font_title">Kết quả tìm kiếm</p>
+        <div class="middle_content">
+		<div class="col-main">
+				<div class="main-1">
+				<h1>Tìm kiếm nâng cao</h1>
+				</div>
+				<div class="main-2">
+				<p>Từ trang này bạn có thể tìm kiếm sách theo tùy chọn</p>
+				</div>
+				<div class="main-5 a-input">
+					<form id="upload-new-book" action="search_result.php" method="post">
+						<fieldset id="field-box">
+						<ul>
+						<li>
+						<h4 class="orange">Thông tin sách</h4>
+						</li>
+							<li class="info">
+								<div class = "book"> 
+									<label for="book name">Tên sách </label> </br>
+									<input type="text" name="title"  title="Tên sách" style="width: 350px;" class="form-text" maxlength="50" >
+								</div>
+								<div class="author"> 
+									<label for="author-name">Tên tác giả </label> </br>
+									<div class = "author-box" >
+										<input type="text" name="author" title="Tên tác giả" style="width: 350px;"class="form-text" maxlength="30">
+									</div>
+								</div>								
+							</li>
+							<li class="info">
+								<div class="category"> 
+									<label for="category">
+										<div class="inner-head">
+											<h5>Thể loại</h5>
+										</div>
+									</label> </br>
+									<table style="width:100%">
+										<tbody>
+									  <tr>
+										<td><input type="checkbox" name="category[]" value="1"> Sách Tiếng Anh</td>
+										<td><input type="checkbox" name="category[]" value="5"> Sách Kỹ Năng Sống - Nghệ Thuật Sống</td> 
+										<td><input type="checkbox" name="category[]" value="4"> Sách Chuyên Ngành</td>
+									  </tr>
+									  <tr>
+										<td><input type="checkbox" name="category[]" value="3"> Sách Kinh Tế</td>
+										<td><input type="checkbox" name="category[]" value="6"> Sách Giáo Khoa - Tham Khảo</td> 
+										<td><input type="checkbox" name="category[]" value="9"> Sách Truyện Thiếu Nhi</td>
+									  </tr>
+									  <tr>
+										<td><input type="checkbox" name="category[]" value="7"> Sách Học Ngoại Ngữ - Từ Điển</td>
+										<td><input type="checkbox" name="category[]" value="2"> Sách  Văn Học - Tiểu Thuyết</td> 
+										<td><input type="checkbox" name="category[]" value="8"> Sách Cho Tuổi Mới Lớn</td>
+									  </tr>
+									  <tr>
+										<td><input type="checkbox" name="category[]" value="10"> Sách Thường Thức - Đời Sống</td>
+										<td><input type="checkbox" name="category[]" value="13"> Sách Nuôi Dạy Con</td> 
+										<td><input type="checkbox" name="category[]" value="12"> Sách Văn Hóa - Nghệ Thuật - Du Lịch</td>
+									  </tr>
+									  <tr>
+										<td><input type="checkbox" name="category[]" value="11"> Truyện Tranh - Manga - Comic</td>
+									  </tr>
+									  <tbody>
+									</table>
+								</div>
+							</li>
+						</ul>
+						</fieldset>
+						<fieldset id="field-box">
+						<ul>	
+							<li class="info">
+								<div class="author"> 
+									<label for="company">Công ty phát hành</label> </br>
+									<div class = "author-box" >
+										<input type="text" name="company" title="Công ty phát hành" class="form-text" maxlength="30">
+									</div>
+								</div>
+								<div class="author"> 
+									<label for="publishing_house">Nhà xuất bản</label> </br>
+									<div class = "author-box" >
+										<input type="text"  name="publishing_house" title="Nhà xuất bản" class="form-text" maxlength="30"> 
+									</div>
+								</div>
+							</li>							
+						</ul>
+						</fieldset>
+						<input type="submit" name="timnangcao" value="Tìm" class="signin-button">
+					</form>				
+				</div>
 			</div>
-			<div class="divider xam">
-				<ul class="float_right">
-					<li class="margin_top_15"><span>Xếp theo</span></li>
-					<li>
-						<select id="mySelect" onchange="myFunction" class="sap_xep xam margin_top_10">
-								<option value="NgàyXB">Ngày xuất bản</option>
-								<option value="Z-A">Tên:Z-A</option>
-								<option value="A-Z">Tên:A-Z</option>
-								<option value="giacao">Giá:cao-thấp</option>
-								<option value="giathap">Giá:thấp-cao</option>
-								<option value="salecao">Mức giảm giá:cao-thấp</option>
-								<option value="salethap">Mức giảm giá:thấp-cao</option>
-						</select>
-					</li>
-				</ul>
-			</div>
-                <div class="list_book1">
-					<?php
-					$conn=mysqli_connect("localhost","root","","bookstore");
-					if (mysqli_connect_errno())
-						{
-							echo "Failed to connect to MySQL: " . mysqli_connect_error();
-						}
-					mysqli_set_charset($conn,"utf8");
-					$sql="SELECT DISTINCT books.book_ID,books.title,books.author,books.price,books.sale_off,books.image FROM books,book_cate WHERE $str ORDER BY publish_date DESC";
-					$query=mysqli_query($conn,$sql);
-					$check=0;
-					if($query==false) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";
-					elseif(!mysqli_num_rows($query)) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";
-					else{
-					while ($data = mysqli_fetch_assoc($query) )
-					{					
-						$img=$data['image'];
-						$title=$data['title'];
-						$ID=$data['book_ID'];
-						$author=$data['author'];
-						$price=$data['price'];
-						$sale_off=$data['sale_off'];
-						?>
-							<div class="book">
-								<div class="book_icon"><a href="book_info.php?book_ID=<?php echo $ID;?>"><img src="images/<?php echo $img; ?>" width="130" height="182" /></a></div>
-								<div class="book_title"><a href="book_info.php?book_ID=<?php echo $ID;?>"><?php echo $title;?></a></div>
-								<div class="book_note"><?php echo $author; ?></div>
-								<div class="book_cost"><?php $gia_ban=(int)($price*(100-$sale_off)/100); echo $gia_ban;?>.000₫</div>
-								<div class="book_note">-<?php echo $sale_off;?>%</div>
-							</div>
-						<?php
-						$check++;
-						if(($check % 5)==0)
-							{
-								?><div class="clr"></div><?php
-							}
-					}
-					}
-					?>	
-                </div>
-				<div class="clr"></div>
+
             <!------- END Middle_content ------->
-			</div>
+        </div>
 	</div>
         <div class="clr"></div>
         <!--------------- FOOTER ------------------>
