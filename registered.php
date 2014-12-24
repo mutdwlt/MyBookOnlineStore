@@ -32,15 +32,15 @@
 	<div class="header">
         <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
-            <form>
+            <form action="search_result.php" method="post">
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
-            	<input name="button" type="button" class="button" value="TÌM" />
+            	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/login_icon.png" width="45" height="41" align="middle" /></div>
-            <div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+            <div class="login_text1"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
@@ -100,7 +100,8 @@
 								$l=0;
 								$ngaytao=date("Y-m-d");
 								$birth=date("$year-$month-$day");
-								$query2=mysqli_query($conn,"INSERT INTO customers(cus_ID,cus_name,sex,phone,email,address,birth,username,password,role,date) VALUES('','$name','$sex','$phone','$email','$address','$birth','$username','$password','$l','$ngaytao')");
+								$active=1;
+								$query2=mysqli_query($conn,"INSERT INTO customers(cus_ID,cus_name,sex,phone,email,address,birth,username,password,role,date,active) VALUES('','$name','$sex','$phone','$email','$address','$birth','$username','$password','$l','$ngaytao','$active')");
 								if($query2) {
 								echo "Bạn đã đăng ký thành công!"?> <a href="login.php">Click here</a><?php echo " để chuyển đến trang đăng nhập";
 								die();
