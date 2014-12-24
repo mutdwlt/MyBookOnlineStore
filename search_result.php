@@ -5,9 +5,47 @@
 			if($_POST['search'])
 			{
 			$search=$_POST['search'];
-			$str=" title LIKE '%$search%' ";
+			$str=" title LIKE '%$search%'";
 			}
 			else $str=" 0";
+		}
+	elseif(isset($_POST['timnangcao']))
+		{
+			if($_POST['title'])
+			{
+				$title=$_POST['title'];
+				$strtitle=" title LIKE '%$title%'";
+			}
+			else $strtitle="1";
+			if($_POST['author'])
+			{
+				$author=$_POST['author'];
+				$strauthor="author LIKE '%$author%'";
+			}
+			else $strauthor="1";
+			if($_POST['company'])
+			{
+				$company=$_POST['company'];
+				$strcompany="company LIKE '%$company%'";
+			}
+			else $strcompany="1";
+			if($_POST['publishing_house'])
+			{
+				$publishing_house=$_POST['publishing_house'];
+				$strpublishing_house="publishing_house LIKE '%$publishing_house%'";
+			}
+			else $strpublishing_house="1";
+			if(isset($_POST['category']))
+			{
+			$strcate="";
+			foreach($_POST['category'] as $theloai)
+				{
+				$strcate=$strcate." OR book_cate.cate_ID ='$theloai'";
+				}
+			$str=" books.book_ID=book_cate.book_ID $strcate AND $strtitle AND $strauthor AND $strcompany AND $strpublishing_house";
+			}
+			else
+			  $str=" $strtitle AND $strauthor AND $strcompany AND $strpublishing_house";			
 		}
 	else $str=" 0";
 ?>
@@ -15,12 +53,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Mua sách trực tuyến</title>
+        <title>Kết quả tìm kiếm</title>
         <link rel="stylesheet" type="text/css" href="css/top_header.css"/>
         <link rel="stylesheet" type="text/css" href="css/content.css"/>
         <link rel="stylesheet" type="text/css" href="css/left_content.css"/>
         <link rel="stylesheet" type="text/css" href="css/middle_content.css"/>
         <link rel="stylesheet" type="text/css" href="css/footer.css"/>
+		<link rel="stylesheet" href="css/upload_book.css">
 		<style type="text/css">
 			a:link{
 				text-decoration:none;
@@ -46,13 +85,13 @@
         <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
             <form action="search_result.php" method="post">
-            	<div class="search_div"><input type="text" name="search" class="search"/></div>
+            	<div class="search_div"><input type="text" name="search" placeholder="Tìm theo tên sách" class="search"/></div>
             	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
-           	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
+           	<div class="login_icon"><img src="images/<?php if(isset($_SESSION['role'])){if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";}else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
 			<?php
 				if(isset($_SESSION['name']))
 				{
@@ -77,7 +116,7 @@
 				<div class="login_text1"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
 				<?php
 				}
-			?> 
+			?>  
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
@@ -94,34 +133,19 @@
             	<div class="title_box1">DANH MỤC SÁCH</div>
                 <div class="left_menu1">
                     <ul class="left_menu_content1">
-						<li><a href="#">Sách Tiếng Anh</a></li>
-                        <li><a href="sach_van_hoc.php">Sách Văn Học - Tiểu Thuyết</a></li>
-                        <li><a href="#">Sách Kinh Tế</a></li>
-                        <li><a href="#">Sách Chuyên Ngành</a></li>
-						<li><a href="#">Sách Kỹ Năng Sống - Nghệ Thuật Sống</a></li>
-                        <li><a href="#">Sách Giáo Khoa - Tham Khảo</a></li>
-                        <li><a href="#">Sách Học Ngoại Ngữ - Từ Điển</a></li>
-                        <li><a href="#">Sách Cho Tuổi Mới Lớn</a></li>
-                        <li><a href="#">Sách Truyện Thiếu Nhi</a></li>
-						<li><a href="#">Sách Thường Thức - Đời Sống</a></li>
-                        <li><a href="#">Truyện Tranh, Manga, Comic</a></li>
-						<li><a href="#">Sách Văn Hóa - Nghệ Thuật - Du Lịch</a></li>
-                        <li style="border: none;"><a href="#">Sách Nuôi Dạy Con</a></li>
-                    </ul>
-                </div>
-				<div class="title_box2">MUA THEO</div>
-                <div class="left_menu2">
-                    <ul class="left_menu_content2">
-						<li class="gia">Giá</li>
-                        <li><a href="">0 ₫ - 100.000 ₫ </a></li>
-                        <li><a href="">100.000 ₫ - 200.000 ₫ </a></li>
-                        <li><a href="">200.000 ₫ - 300.000 ₫ </a></li>
-                        <li><a href="">300.000 ₫ - 400.000 ₫ </a></li>
-                        <li><a href="">400.000 ₫ - 500.000 ₫ </a></li>
-                        <li><a href="">500.000 ₫ - 600.000 ₫ </a></li>
-                        <li><a href="">600.000 ₫ - 700.000 ₫ </a></li>
-                        <li><a href="">700.000 ₫ - 800.000 ₫ </a></li>
-                        <li style="border: none;"><a href="">800.000 ₫ - 1.000.000 ₫ </a></li>
+						<li><a href="category.php?cate_ID=1">Sách Tiếng Anh</a></li>
+                        <li><a href="category.php?cate_ID=2">Sách Văn Học - Tiểu Thuyết</a></li>
+                        <li><a href="category.php?cate_ID=3">Sách Kinh Tế</a></li>
+                        <li><a href="category.php?cate_ID=4">Sách Chuyên Ngành</a></li>
+						<li><a href="category.php?cate_ID=5">Sách Kỹ Năng Sống - Nghệ Thuật Sống</a></li>
+                        <li><a href="category.php?cate_ID=6">Sách Giáo Khoa - Tham Khảo</a></li>
+                        <li><a href="category.php?cate_ID=7">Sách Học Ngoại Ngữ - Từ Điển</a></li>
+                        <li><a href="category.php?cate_ID=8">Sách Cho Tuổi Mới Lớn</a></li>
+                        <li><a href="category.php?cate_ID=9">Sách Truyện Thiếu Nhi</a></li>
+						<li><a href="category.php?cate_ID=10">Sách Thường Thức - Đời Sống</a></li>
+						<li><a href="category.php?cate_ID=11">Truyện Tranh, Manga, Comic</a></li>
+						<li><a href="category.php?cate_ID=12">Sách Văn Hóa - Nghệ Thuật - Du Lịch</a></li>
+                        <li style="border: none;"><a href="category.php?cate_ID=13">Sách Nuôi Dạy Con</a></li>
                     </ul>
                 </div>
             </div>
@@ -146,22 +170,25 @@
 								<option value="salethap">Mức giảm giá:thấp-cao</option>
 						</select>
 					</li>
+					<li>
+					<input type="submit" name="timnangcao" value="Tìm" class="signin-button1">
+					</li>
 				</ul>
 			</div>
-				<?php
+                <div class="list_book1">
+					<?php
 					$conn=mysqli_connect("localhost","root","","bookstore");
 					if (mysqli_connect_errno())
 						{
 							echo "Failed to connect to MySQL: " . mysqli_connect_error();
 						}
 					mysqli_set_charset($conn,"utf8");
-					$sql="SELECT * FROM books WHERE $str ORDER BY publish_date DESC";
+					$sql="SELECT DISTINCT books.book_ID,books.title,books.author,books.price,books.sale_off,books.image FROM books,book_cate WHERE $str ORDER BY publish_date DESC";
 					$query=mysqli_query($conn,$sql);
-					if(!mysqli_num_rows($query)) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";
-				?>
-                <div class="list_book1">
-					<?php
 					$check=0;
+					if($query==false) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";
+					elseif(!mysqli_num_rows($query)) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";
+					else{
 					while ($data = mysqli_fetch_assoc($query) )
 					{					
 						$img=$data['image'];
@@ -184,7 +211,8 @@
 							{
 								?><div class="clr"></div><?php
 							}
-					}				
+					}
+					}
 					?>	
                 </div>
 				<div class="clr"></div>
