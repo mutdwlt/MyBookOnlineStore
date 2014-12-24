@@ -59,28 +59,39 @@
 	<div class="header">
         <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
-            <form>
+            <form action="search_result.php" method="post">
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
-            	<input name="button" type="button" class="button" value="TÌM" />
+            	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
 			<?php
 				if(isset($_SESSION['name']))
 				{
-				?>
-				<div class="login_text"><a href="ad_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
-				<?php
+					if($_SESSION['role']==1)
+					{
+					?>
+						<div class="login_text">Chào Admin</div>
+						<div class="login_text"><a href="ad_account.php">Trang quản lý</a> | <a href="logout.php">Đăng Xuất</a></div>
+					<?php					
+					}
+					else
+					{
+					?>
+						<div class="login_text"> Chào <?php echo $_SESSION['name'];?> - <a href="logout.php">Log out</a></div>
+						<div class="login_text"><a href="cus_account.php">Trang cá nhân</a> | <a href="cus_cart.php">Giỏ hàng</a></div>
+					<?php
+					}
 				}
 				else
 				{
 				?>
-				<div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+				<div class="login_text1"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
 				<?php
 				}
-			?>  
+			?> 
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
@@ -133,13 +144,22 @@
 										<span><b>Book ID</b></span>
 										<input type="text" name="book_ID" id="book-id" placeholder="BookID" title="Id" style="width: 80px;" class="form-text" maxlength="7" >
 										
-									</div>
+									</div>									
 									<div class="b-name">
 										<b>Tên sách</b>
 										<input type="text" name="title" id="b-name" placeholder="Tên sách" title="Tên sách" style="width: 150px;" class="form-text" maxlength="50" >
 									</div>
 									<div class="b-search--button">
 										<button type="submit" name="submit"> Tìm </button>
+									</div>
+									<div class="clear"></div>
+									<div class="tim_theo">
+									Xếp theo:
+									<input type="radio" name="xep" value="0" checked>ID
+									<input type="radio" name="xep" value="1">Ngày xuất bản
+									<input type="radio" name="xep" value="2">Bán chạy nhất
+									<input type="radio" name="xep" value="3">Còn nhiều nhất
+									<input type="radio" name="xep" value="4">Mới thêm vào
 									</div>
 								</div>
 							</li>
@@ -153,13 +173,15 @@
 							<tr class="first last">
 								<th style="width:10%;">Sách #</th>
 								<th>Tên sách</th>
-								<th style="width:14%;">Khuyến mãi&nbsp;</th>
-								<th style="width:14%;">Giá tiền</th>
-								<th style="width:12%;">Tồn kho</th>
+								<th style="width:7%;">Sale&nbsp;</th>
+								<th style="width:10%;">Giá tiền</th>
+								<th style="width:15%;">Ngày xuất bản</th>
+								<th style="width:10%;">Đã bán</th>
+								<th style="width:10%;">Tồn kho</th>
 								<th style="width:7%;">&nbsp;</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="over">
 						<?php
 						if(isset($_POST['submit']))
 						{
@@ -180,23 +202,39 @@
 									$strtitle="AND title LIKE '%$title%'";
 									}
 									else $strtitle="AND 1";
-								}							
+								}
+							if($_POST['xep']==0) $strorder="book_ID";
+							elseif($_POST['xep']==1) $strorder="publish_date DESC";
+							elseif($_POST['xep']==3) $strorder="store DESC";
+							elseif($_POST['xep']==4) $strorder="book_ID DESC";
 						}
-						if(isset($_POST['submit']))
+						if(isset($_POST['submit'])&&($_POST['xep']!=2))
 							{
-								$sql="SELECT * FROM books WHERE $strid $strtitle";
+								$sql="SELECT * FROM books WHERE $strid $strtitle ORDER BY $strorder";
+							}
+						elseif(isset($_POST['submit'])&&($_POST['xep']==2))
+							{
+								$sql="SELECT books.book_ID,books.title,books.author,books.price,books.store,books.publish_date,books.sale_off,sum(orderlines.quantity) as sum FROM books,orderlines WHERE books.book_ID=orderlines.book_ID AND $strid $strtitle GROUP BY books.book_ID ORDER BY sum DESC";
 							}
 						else $sql="SELECT * FROM books";
 							$query=mysqli_query($conn,$sql);
 							if(mysqli_num_rows($query)==0) echo "<font color='red'>Không tìm thấy dữ liệu</font>";
 							while($row=mysqli_fetch_assoc($query))
 							{
+								$idsach=$row['book_ID'];
+								$queryx=mysqli_query($conn,"SELECT sum(quantity) as tong FROM orderlines WHERE book_ID='$idsach'");
+								$rowx=mysqli_fetch_assoc($queryx);
+								if($rowx['tong'])
+									$daban=$rowx['tong'];
+								else $daban=0;
 							?>
 								<tr class="first last odd">
 									<td><?php echo $row['book_ID'];?></td>
 									<td><a href="book_info.php?book_ID=<?php echo $row['book_ID'];?>" title="Xem chi tiết sách"><span class="b-name"><?php echo $row['title'];?></span> </a></td>
 									<td><span class="b-sales-off"><em><?php echo $row['sale_off'];?></em>&nbsp;%</span></td>
-									<td><span class="price"><?php echo $row['price'];?>.000₫</span>&nbsp;</td> 
+									<td><span class="price"><?php echo $row['price'];?>.000₫</span>&nbsp;</td>
+									<td><span class="price"><?php echo $row['publish_date'];?></span>&nbsp;</td>
+									<td><span class="price"><?php echo $daban;?> quyển</span>&nbsp;</td>
 									<td>
 										<em><?php echo $row['store'];?></em>&nbsp;quyển&nbsp;
 									</td>
