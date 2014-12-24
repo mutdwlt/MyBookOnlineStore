@@ -31,6 +31,7 @@
         <link rel="stylesheet" type="text/css" href="css/left_content.css"/>
         <link rel="stylesheet" type="text/css" href="css/middle_content.css"/>
         <link rel="stylesheet" type="text/css" href="css/footer.css"/>
+		<link rel="stylesheet" href="css/upload_book.css">
 		<style type="text/css">
 			a:link{
 				text-decoration:none;
@@ -59,7 +60,7 @@
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
             	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if(isset($_SESSION['role'])){if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";}else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
@@ -119,21 +120,6 @@
                         <li <?php if($cate_ID==13) echo "class ='on'";?> style="border: none;"><a href="category.php?cate_ID=13">Sách Nuôi Dạy Con</a></li>
                     </ul>
                 </div>             
-                <div class="title_box2">MUA THEO</div>
-                <div class="left_menu2">
-                    <ul class="left_menu_content2">
-						<li class="gia">Giá</li>
-                        <li><a href="">0 ₫ - 100.000 ₫ </a></li>
-                        <li><a href="">100.000 ₫ - 200.000 ₫ </a></li>
-                        <li><a href="">200.000 ₫ - 300.000 ₫ </a></li>
-                        <li><a href="">300.000 ₫ - 400.000 ₫ </a></li>
-                        <li><a href="">400.000 ₫ - 500.000 ₫ </a></li>
-                        <li><a href="">500.000 ₫ - 600.000 ₫ </a></li>
-                        <li><a href="">600.000 ₫ - 700.000 ₫ </a></li>
-                        <li><a href="">700.000 ₫ - 800.000 ₫ </a></li>
-                        <li style="border: none;"><a href="">800.000 ₫ - 1.000.000 ₫ </a></li>
-                    </ul>
-                </div>
             </div>
             <!------- END left_content ------->
             
@@ -144,29 +130,45 @@
                 	<p class="font_title"><?php echo $cate_name;?></p>
 			  	</div>
 				<div class="divider xam">
+				<form action="category.php?cate_ID=<?php echo $cate_ID;?>" method="post">
 					<ul class="float_right">
 						<li class="margin_top_15"><span>Xếp theo</span></li>
 						<li>
-							<select id="mySelect" onchange="myFunction" class="sap_xep xam margin_top_10">
-								<option value="NgàyXB">Ngày xuất bản</option>
-								<option value="Z-A">Tên:Z-A</option>
-								<option value="A-Z">Tên:A-Z</option>
-								<option value="giacao">Giá:cao-thấp</option>
-								<option value="giathap">Giá:thấp-cao</option>
-								<option value="salecao">Mức giảm giá:cao-thấp</option>
-								<option value="salethap">Mức giảm giá:thấp-cao</option>
+							<select id="mySelect" name="kieu" class="sap_xep xam margin_top_10">
+								<option value="1">Ngày xuất bản</option>
+								<option value="2">Tên:Z-A</option>
+								<option value="3">Tên:A-Z</option>
+								<option value="4">Giá:cao-thấp</option>
+								<option value="5">Giá:thấp-cao</option>
+								<option value="6">Mức giảm giá:cao-thấp</option>
+								<option value="7">Mức giảm giá:thấp-cao</option>
 							</select>
 						</li>
+						<li>
+						<input type="submit" name="timnangcao" value="Tìm" class="signin-button1">
+						</li>
 					</ul>
+				</form>
 				</div>
 				<?php
+					if(isset($_POST['timnangcao']))
+					{
+						if($_POST['kieu']==1) $str="publish_date DESC";
+						elseif($_POST['kieu']==2) $str="title DESC";
+						elseif($_POST['kieu']==3) $str="title";
+						elseif($_POST['kieu']==4) $str="price DESC";
+						elseif($_POST['kieu']==5) $str="price";
+						elseif($_POST['kieu']==6) $str="sale_off DESC";
+						elseif($_POST['kieu']==7) $str="sale_off";
+					}
+					else $str="publish_date DESC";
 					$conn=mysqli_connect("localhost","root","","bookstore");
 					if (mysqli_connect_errno())
 						{
 							echo "Failed to connect to MySQL: " . mysqli_connect_error();
 						}
 					mysqli_set_charset($conn,"utf8");
-					$sql="SELECT books.book_ID,books.title,books.author,books.image,books.price,books.sale_off FROM books,book_cate WHERE book_cate.cate_ID='$cate_ID' AND books.book_ID=book_cate.book_ID ORDER BY publish_date DESC LIMIT 0,20";
+					$sql="SELECT books.book_ID,books.title,books.author,books.image,books.price,books.sale_off FROM books,book_cate WHERE book_cate.cate_ID='$cate_ID' AND books.book_ID=book_cate.book_ID ORDER BY $str LIMIT 0,15";
 					$query=mysqli_query($conn,$sql);
 					if($query==false)
 					{die(mysqli_error($conn));
