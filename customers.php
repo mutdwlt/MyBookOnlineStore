@@ -55,7 +55,7 @@
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
             	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
@@ -171,9 +171,9 @@
 						}
 						if(isset($_POST['tim']))
 							{
-								$sql="SELECT * FROM customers WHERE $strid $strname";
+								$sql="SELECT * FROM customers WHERE role=0 AND $strid $strname";
 							}
-						else $sql="SELECT * FROM customers";
+						else $sql="SELECT * FROM customers WHERE role=0";
 					?>
 							<div class="main-3">
 								<div class="title-box">
@@ -207,7 +207,7 @@
 												<a href="#" title="Xem khách hàng"><?php echo $row['cus_ID'];?></a>&nbsp;
 											</td>
 											<td>
-												<a href="#" title="Xem khách hàng"><?php echo $row['cus_name'];?></a>
+												<a href="ad_cus_account.php?cus_ID=<?php echo $cus_ID; ?>" title="Xem khách hàng"><?php echo $row['cus_name'];?></a>
 											</td>
 											<td>
 												<span class=""><em><?php echo $row['phone'];?></em></span>&nbsp;
