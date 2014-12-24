@@ -58,28 +58,39 @@
 	<div class="header">
         <div id="homepage_icon"><a href="index.php"><abbr title="Home Page"><img src="images/Homepage_icon.jpg" width="80" height="97"/></abbr></a></div>
 	  	<div class="search_area">
-            <form>
+            <form action="search_result.php" method="post">
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
-            	<input name="button" type="button" class="button" value="TÌM" />
+            	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
 			<?php
 				if(isset($_SESSION['name']))
 				{
-				?>
-				<div class="login_text"><a href="ad_account.php">Xin chào <?php echo $_SESSION["name"];?></a> | <a href="logout.php">Đăng Xuất</a></div>
-				<?php
+					if($_SESSION['role']==1)
+					{
+					?>
+						<div class="login_text">Chào Admin</div>
+						<div class="login_text"><a href="ad_account.php">Trang quản lý</a> | <a href="logout.php">Đăng Xuất</a></div>
+					<?php					
+					}
+					else
+					{
+					?>
+						<div class="login_text"> Chào <?php echo $_SESSION['name'];?> - <a href="logout.php">Log out</a></div>
+						<div class="login_text"><a href="cus_account.php">Trang cá nhân</a> | <a href="cus_cart.php">Giỏ hàng</a></div>
+					<?php
+					}
 				}
 				else
 				{
 				?>
-				<div class="login_text"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
+				<div class="login_text1"><a href="login.php">Đăng nhập</a> | <a href="registered.php">Đăng ký</a></div>
 				<?php
 				}
-			?>  
+			?> 
             <div class="hotline"><img src="images/phone_icon.jpg" width="15" height="15" /><span class="hotline_text">Hotline:</span> <span class="phone_number">1900-6035</span><span style="font-size:12px">(8-21h kể cả T7,CN)</span></div>
         </div>
     </div>
@@ -113,7 +124,7 @@
 			</div>
 			<div class="col-main">
 				<div class="main-1">
-				<h1>Đơn hàng của tôi</h1>
+				<h1>Quản lý đơn hàng</h1>
 				</div>
 				<div class="main-2">
 				<p><strong>Xin chào, admin</strong><br>
@@ -134,6 +145,10 @@
 						if($_POST['status']==0) $strstatus=" orders.status=0";
 						else if($_POST['status']==1) $strstatus=" orders.status=1";
 						else $strstatus="1";
+						if($_POST['order']==1) $strorder="date DESC";
+						elseif($_POST['order']==0) $strorder="total DESC";
+						elseif($_POST['order']==2) $strorder="date";
+						elseif($_POST['order']==3) $strorder="total";
 					}
 				?>
 						<form id="search-book" action="ad_order_history.php" method="post" onsubmit="">
@@ -148,14 +163,37 @@
 											<input type="text" name="cus_name" id="order-name" placeholder="Tên khách hàng" title="Mã khách hàng" style="width: 150px;" class="form-text" maxlength="50">
 										</div>
 									</div>
+									<div class="or-stt" style="float: left;">
+										<b>Xếp theo:</b>
+									</div>
+									<div class="or-status">
+										<div class="left">
+											<input type="radio" name="order" value="1" checked>
+											Mới nhất
+										</div>
+										<div class="left">
+											<input type="radio" name="order" value="0">
+											Giá cao nhất
+										</div>
+									</div>
+									<div class="or-status">
+										<div class="left">
+											<input type="radio" name="order" value="2">
+											Lâu nhất
+										</div>
+										<div class="left">
+											<input type="radio" name="order" value="3">
+											Giá thấp nhất
+										</div>
+									</div>
 								</li>
 								<li class="search-order">
 									<div class="date">
 										<span><b>Ngày tháng </b></span>
 										<input type="text" id="order-id" name="date" placeholder="Ngày tháng" title="Id" style="width: 100px;" class="form-text" maxlength="11">
-									</div>
+									</div>								
 									<div class="or-stt" style="float: left;">
-										<b>Trạng thái đơn hàng</b>
+										<b>Trạng thái</b>
 									</div>
 									<div class="or-status">
 										<div class="left">
@@ -196,10 +234,10 @@
 						</thead>
 						<tbody>
 							<?php
-								if($i==1) $sqlorder="SELECT DISTINCT orders.order_ID,orders.cus_ID,orders.date,orders.total,orders.status FROM orders,customers WHERE $strstatus $strname $strdate";
-								else $sqlorder="SELECT * FROM orders";
+								if($i==1) $sqlorder="SELECT DISTINCT orders.order_ID,orders.cus_ID,orders.date,orders.total,orders.status FROM orders,customers WHERE $strstatus $strname $strdate ORDER BY $strorder";
+								else $sqlorder="SELECT * FROM orders ORDER BY date DESC";
 								$query=mysqli_query($conn,$sqlorder);
-								if($query==false) {echo "không tìm thấy dữ liệu yêu cầu";}
+								if(mysqli_num_rows($query)==0) {echo "<font color='red'>không tìm thấy dữ liệu yêu cầu</font>";}
 								else{
 								while($row=mysqli_fetch_assoc($query))
 								{?>
