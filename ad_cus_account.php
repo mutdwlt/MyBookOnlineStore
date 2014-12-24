@@ -66,7 +66,7 @@
             	<div class="search_div"><input type="text" name="search" class="search"/></div>
             	<input name="submit" type="submit" class="button" value="TÌM" />
             </form>
-                <div class="title"><a href="index.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
+                <div class="title"><a href="search.php"><img src="images/title.png" width="261" height="35" alt="muasachonline.vn" /></a></div>
         </div>
 		<div class="login_area">
            	<div class="login_icon"><img src="images/<?php if($_SESSION['role']==1) echo "admin_icon.png"; else echo"login_icon.png";?>" width="45" height="41" align="middle" /></div>
