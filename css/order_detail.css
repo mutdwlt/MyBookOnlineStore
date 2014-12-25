@@ -1,0 +1,32 @@
+.b-content .b-my-account__title {
+font-size: 18px !important;
+padding-bottom: 5px !important;
+margin: 0 0 15px 0 !important;
+line-height: 1.6 !important;
+border-bottom: 1px solid #dfdfdf;
+}
+.b-order-view h4, .h4 {
+font-size: 18px;
+}
+h5, .h5 {
+font-size: 14px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 500;
+line-height: 1.1;
+color: inherit;
+letter-spacing: 0;
+}
+.a-right {
+text-align: right;
+}
+.generic-box {
+margin-bottom: 15px;
+padding: 12px 15px;
+border: 1px solid #D0CBC1;
+background: url(images/base_mini_head_bg.gif) repeat-x #fff;
+}
+.generic-box .c-name{
+text-transform: uppercase;
+}

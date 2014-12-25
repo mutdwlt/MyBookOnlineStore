@@ -1,0 +1,17 @@
+.ad-web-info  h4{
+color: #E65505;
+font-size: 1.1em;
+text-transform: uppercase;
+}
+.ad-web-info .info-date{
+margin:19px 0;
+}
+.ad-web-info .info-number{
+font-size: 1.2em;
+text-transform: uppercase;
+font-weight: bold;
+font-style: italic;
+}
+.info{
+margin-left:20px;
+}

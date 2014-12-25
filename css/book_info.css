@@ -1,0 +1,145 @@
+.content{
+	width:1080px;
+	margin: 15px 0 0 120px;
+}
+.info{
+	margin-top:20px;
+}
+.bia_sach{
+	float:left;
+	margin-right:70px;
+}
+.gia_sach{
+width: 300px;
+	line-height:30px;
+	margin-top:60px;
+	float:left;
+	color:#333;
+}
+.gia_sach h2{
+	margin-bottom:10px;
+	font-size: 19px;
+	font-weight: bold;
+}
+.dat_hang{
+	width:400px;
+	height:75px;
+	margin:60px 0 0 50px;
+	float:left;
+	border-radius:12px;
+}
+.dat_hang form{
+	float:left;
+	margin:3px 43px 0 55px;
+}
+.dat_hang form .so_luong{
+	background:url(../images/2014-12-16_012744.png) repeat-x;
+	border:none;
+	width:30px;
+	height:28px;
+	padding-left:20px;
+	border-radius:3px;
+}
+.dat_hang p{
+	margin:10px 0 0 55px;
+}
+.clear-fix{
+	clear:both;
+}
+/****************  	DETAILS			*****************/
+/****************  	DETAILS			*****************/
+/****************  	DETAILS			*****************/
+
+li{
+	list-style:none;
+}
+.font_21px{
+	font-size:21px;
+}
+.gray{
+	color:#4D3B3B;
+}
+.book_info_menu li{
+	float:left;
+	width:190px;
+	height:25px;
+	margin: 20px 0 10px 46px;
+	padding: 3px 10px 0 0;
+}
+.book_info_menu .normal_color a:link,.book_info_menu .normal_color a:visited, .book_info_menu .normal_color a:hover{
+	color:#888888;
+}
+.bottom_20px{
+	margin-bottom:20px;
+}
+.orange{
+	color:#FF6600;
+}
+.book_info p{
+	color:#4D3B3B;
+	line-height:22px;
+	margin-bottom:10px;
+	font-size:14px;
+}
+.border_bottom{
+	border-bottom:1px solid #C6BFBF;
+}
+.border_right{
+	border-right:1px solid #C6BFBF;
+}
+.float_left{
+	float:left;
+}
+.le{
+	background:#F9F9F9;
+}
+.table ul{
+	font-size:14px;
+	float:left;
+	color:#444444;
+}
+.table li{
+	padding-left:20px;
+	line-height:40px;
+	border-left:1px solid #C6BFBF;
+	border-top:1px solid #C6BFBF;
+}
+.left_table{
+	width:300px;
+}
+.right_table{
+	width:775px;;
+}
+.right_table li{
+	border-right:1px solid #C6BFBF;
+}
+.chi_tiet{
+	height:670px;;
+	margin-bottom:30px;
+}
+
+.signin-button{
+background: linear-gradient(to bottom, #32befb 0%, #19a5e1 100%);
+float: right;
+border: none!important;
+box-shadow: 0 -2px 0 #0788bf inset;
+padding: 8px 12px;
+color: #fff;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+cursor: pointer;
+border-radius: 5px;
+font-size: 12px;
+font-weight: bold;
+text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+overflow: visible;
+margin-bottom: 20px;
+}
+
+
+
+
+
+
+

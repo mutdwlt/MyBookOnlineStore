@@ -1,0 +1,86 @@
+/* CSS Document */
+
+.start{
+	width:980px;
+	height:auto;
+	padding: 15px 10px 0 0px;
+	font-size: 12px;
+	line-height: 1.42857143;
+}
+
+/************* SACH THEO THE LOAI *************/
+
+.gia{
+	font-weight: bold;
+	color: #444;
+	font-size: 14px;
+}
+.left_menu_content2 a:link, .left_menu_content2 a:visited {
+	color:#666;
+	font-size:13px;
+	line-height:30px;
+}
+.left_menu_content2 a:hover{
+	text-decoration:underline;
+}
+.xam{
+	color:#666;
+}
+.font_title{
+	font-size: 19px;
+	font-weight: bold;
+	color: #444444;
+}
+#no_border{
+	border:none;
+}
+.divider{
+	width:100%;
+	height:45px;
+	background:#f1f1f1;
+}
+.sap_xep{
+	width:200px;
+	height:27px;
+	padding-left:5px;
+}
+.float_right{
+	float:right;
+}
+.float_right li{
+	list-style:none;
+	float:left;
+}
+.margin_top_10{
+	margin:10px 15px 0 0;
+}
+.margin_top_10 img{
+	float:left;
+}
+.margin_top_15{
+	margin:15px 15px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
