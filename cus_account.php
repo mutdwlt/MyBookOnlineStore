@@ -114,7 +114,6 @@
 					<li><a href="account_edit.php">Sửa thông tin tài khoản</a></li>
 					<li><a href="cus_cart.php">Giỏ hàng</a></li>
 					<li><a href="order_history.php">Đơn hàng của tôi</a></li>
-					<li><a href="report.php">Hỏi đáp</a></li>
 				</ul>
 			</div>
 			<div class="col-main">

@@ -12,6 +12,7 @@
 		}
 	mysqli_set_charset($conn,"utf8");
 	$sql="SELECT cate_name FROM category WHERE cate_ID='$cate_ID'";
+	echo $sql;
 	$query=mysqli_query($conn,$sql);
 	if($query==false)
 		{die(mysqli_error($conn));
@@ -169,6 +170,7 @@
 						}
 					mysqli_set_charset($conn,"utf8");
 					$sql="SELECT books.book_ID,books.title,books.author,books.image,books.price,books.sale_off FROM books,book_cate WHERE book_cate.cate_ID='$cate_ID' AND books.book_ID=book_cate.book_ID ORDER BY $str LIMIT 0,15";
+					echo $sql;
 					$query=mysqli_query($conn,$sql);
 					if($query==false)
 					{die(mysqli_error($conn));

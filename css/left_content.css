@@ -82,6 +82,7 @@
 	height:120px;
 	margin: 5px 0 14px 0px;
 	line-height:21px;
+	overflow:hidden;
 }
 .left_menu2 ul.left_menu_content2 li .book .book_icon{
 	padding: 4px 29px 4px 0;
@@ -89,6 +90,8 @@
 }
 .left_menu2 ul.left_menu_content2 li .book .book_title{
 	font-size:12px;
+	height:30px;
+	overflow:hidden;
 }
 .left_menu2 ul.left_menu_content2 li .book .book_note{
 	font-size:11px;
@@ -108,7 +111,12 @@
 }
 
 
-
+.on {
+color: #444444;
+padding: 6px 0;
+border-bottom: 1px solid #eee;
+font-weight: bold;
+}
 
 
 

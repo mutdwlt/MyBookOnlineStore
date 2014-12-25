@@ -111,6 +111,7 @@
 						mysqli_set_charset($conn,"utf8");
 						$sql="SELECT books.book_ID,books.title,books.image,books.author,books.cover,books.price,books.sale_off,sum(orderlines.quantity) FROM books,orderlines WHERE orderlines.book_ID=books.book_ID GROUP BY title ORDER BY sum(orderlines.quantity) DESC LIMIT 0,5";
 						$query=mysqli_query($conn,$sql);
+						echo $sql;
 						if($query==false)
 						{die(mysqli_error($conn));
 						}
@@ -151,6 +152,7 @@
 						}
 					mysqli_set_charset($conn,"utf8");
 					$sql="SELECT * FROM books WHERE DATEDIFF(publish_date,CURDATE())<0 ORDER BY publish_date DESC LIMIT 0,5";
+					echo $sql;
 					$query=mysqli_query($conn,$sql);
 					if($query==false)
 					{die(mysqli_error($conn));
@@ -187,6 +189,7 @@
 						}
 					mysqli_set_charset($conn,"utf8");
 					$sql="SELECT * FROM books WHERE DATEDIFF(publish_date,CURDATE())>0 ORDER BY publish_date LIMIT 0,5";
+					echo $sql;
 					$query=mysqli_query($conn,$sql);
 					if($query==false)
 					{die(mysqli_error($conn));
@@ -223,6 +226,7 @@
 						}
 					mysqli_set_charset($conn,"utf8");
 					$sql="SELECT * FROM books ORDER BY sale_off DESC LIMIT 0,5";
+					echo $sql;
 					$query=mysqli_query($conn,$sql);
 					if($query==false)
 					{die(mysqli_error($conn));

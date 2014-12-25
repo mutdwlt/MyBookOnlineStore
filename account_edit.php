@@ -108,7 +108,6 @@
 					<li class="on"><a href="account_edit.php">Sửa thông tin tài khoản</a></li>
 					<li><a href="cus_cart.php">Giỏ hàng</a></li>
 					<li><a href="order_history.php">Đơn hàng của tôi</a></li>
-					<li><a href="report.php">Hỏi đáp</a></li>
 				</ul>
 			</div>
 			<div class="col-main">
@@ -136,6 +135,7 @@
 						{
 							$birth1=date("$year1-$month1-$day1");
 							$sqlinfo="UPDATE customers SET cus_name='$name1',email='$email1',address='$address1',phone='$phone1',birth='$birth1' WHERE cus_ID='$ID'";							
+							echo $sqlinfo;
 							$query=mysqli_query($conn,$sqlinfo);
 							$pass_success=0;
 							if($password1)
@@ -148,6 +148,7 @@
 										if($newpassword==$renewpassword)
 										{
 											$sqlpass="UPDATE customers SET password='$newpassword' WHERE cus_ID='$ID'";
+											echo $sqlpass;
 											$query=mysqli_query($conn,$sqlpass);
 											$pass_success=1;
 										}

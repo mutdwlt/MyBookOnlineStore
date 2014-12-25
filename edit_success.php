@@ -1,4 +1,4 @@
-<head>
+﻿<head>
 <meta http-equiv="refresh" content="2; url=cus_account.php" />
 </head>
  

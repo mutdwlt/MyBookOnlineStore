@@ -46,3 +46,6 @@ float: left;
 font-weight: normal;
 color: #444;
 }
+.over{
+overflow:auto;
+}

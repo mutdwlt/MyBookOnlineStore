@@ -157,23 +157,6 @@
                 	<p class="font_title">Kết quả tìm kiếm</p>
 			</div>
 			<div class="divider xam">
-				<ul class="float_right">
-					<li class="margin_top_15"><span>Xếp theo</span></li>
-					<li>
-						<select id="mySelect" onchange="myFunction" class="sap_xep xam margin_top_10">
-								<option value="NgàyXB">Ngày xuất bản</option>
-								<option value="Z-A">Tên:Z-A</option>
-								<option value="A-Z">Tên:A-Z</option>
-								<option value="giacao">Giá:cao-thấp</option>
-								<option value="giathap">Giá:thấp-cao</option>
-								<option value="salecao">Mức giảm giá:cao-thấp</option>
-								<option value="salethap">Mức giảm giá:thấp-cao</option>
-						</select>
-					</li>
-					<li>
-					<input type="submit" name="timnangcao" value="Tìm" class="signin-button1">
-					</li>
-				</ul>
 			</div>
                 <div class="list_book1">
 					<?php
@@ -185,6 +168,7 @@
 					mysqli_set_charset($conn,"utf8");
 					$sql="SELECT DISTINCT books.book_ID,books.title,books.author,books.price,books.sale_off,books.image FROM books,book_cate WHERE $str ORDER BY publish_date DESC";
 					$query=mysqli_query($conn,$sql);
+					echo $sql;
 					$check=0;
 					if($query==false) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";
 					elseif(!mysqli_num_rows($query)) echo"<font color='red'>Không tìm thấy kết quả phù hợp</font>";

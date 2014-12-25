@@ -110,8 +110,6 @@
 					<li><a href="store.php">Quản lý Kho hàng</a></li>
 					<li><a href="customers.php">Quản lý khách hàng</a></li>
 					<li class="on"><a href="ad_order_history.php">Quản lý đơn hàng</a></li>
-					
-					<li><a href="#">Hướng dẫn</a></li>
 				</ul>
 			</div>
 				<div id="main" class="col-main col-md-9 b-content" role="main">

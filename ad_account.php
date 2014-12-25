@@ -118,8 +118,6 @@
 					<li><a href="store.php">Quản lý Kho hàng</a></li>
 					<li><a href="customers.php">Quản lý khách hàng</a></li>
 					<li><a href="ad_order_history.php">Quản lý đơn hàng</a></li>
-					
-					<li><a href="#">Hướng dẫn</a></li>
 				</ul>
 			</div>
 			<div class="col-main">
@@ -130,8 +128,7 @@
 				<p><strong>Xin chào, admin!</strong><br>
 				Sử dụng bảng điều khiển này để quản lý trang web</p>
 				</div>
-				<div class="main-3">
-					
+				<div class="main-3">					
 						<ul class="ad-web-info">
 							<li class="head">
 								<h4>Thông tin trang web </h4>

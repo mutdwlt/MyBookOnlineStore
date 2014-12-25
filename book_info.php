@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	session_start();
 	$ID=$_GET['book_ID'];
 	if(!$ID) header('location:index.php');
