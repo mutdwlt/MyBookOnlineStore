@@ -1,0 +1,105 @@
+/* CSS Document */
+*{
+	margin :0px;
+	padding:0px;
+}
+.clr{
+	clear:both;
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+.top{
+	width:1349px;
+	height:65px;
+	background:#0CF;
+}
+.main{
+	width:1144px;
+	height:auto;
+	margin:0px auto;
+}
+.header{
+	width:1200px;
+	height:120px;
+	margin:0px auto;
+}
+#homepage_icon{
+	padding: 10px 20px 10px 150px;
+	height:100px;
+	float:left;
+}
+.search_area{
+	width:540px;
+	height: 50px;
+	float:left;
+	padding:31px;
+}
+.search_area .search_div{
+	float:left;
+}
+.search_area .search{
+	width: 443px;
+	height: 20px;
+	padding: 6px 12px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border: 1px solid #ccc;
+}
+.search_area .button{
+	width: 71px;
+	height: 34px;
+	background-color: #05b2e9;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFF;
+	font-weight: bold;
+	border-style: none;
+	border-top-right-radius:4px;
+	border-bottom-right-radius:4px;
+}
+.search_area .title{
+	margin:18px 100px 0 120px;
+}
+
+.login_area{
+	width:315px;
+	height:50px;
+	padding:31px 0px 0px 0px;
+	float:left;
+}
+.login_area .login_icon{
+	float:left;
+}
+.login_area .login_text{
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	width:auto;
+	padding-left:5px;
+}
+.login_area .login_text1{
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	padding:14px;
+}
+
+
+.login_area .hotline{
+	float:right;
+	margin: 22px;
+}
+.login_area .hotline .hotline_text{
+	font-size: 15px;
+	color: #999999;
+	font-weight: bold;
+	margin-left: 2px;
+}
+.login_area .hotline .phone_number{
+	font-size:16px;
+	font-weight:bold;
+	color: #444444;
+	margin-left: 3px;
+}
